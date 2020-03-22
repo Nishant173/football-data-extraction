@@ -22,8 +22,8 @@ def get_team_ids_dictionary():
                                         ignore_index=True,
                                         sort=False)
     df_team_id_data = utils.convert_dtypes(dataframe=df_team_id_data,
-                                                       columns=['id'],
-                                                       dtypes=[str])
+                                           columns=['id'],
+                                           dtypes=[str])
     df_team_id_data.drop_duplicates(subset=['id'], keep='first', inplace=True)
     dict_team_id_data = df_team_id_data.set_index('id').to_dict()['title']
     return dict_team_id_data
@@ -47,8 +47,8 @@ def get_player_ids_dictionary():
                                           ignore_index=True,
                                           sort=False)
     df_player_id_data = utils.convert_dtypes(dataframe=df_player_id_data,
-                                                         columns=['id'],
-                                                         dtypes=[str])
+                                             columns=['id'],
+                                             dtypes=[str])
     df_player_id_data.drop_duplicates(subset=['id'], keep='first', inplace=True)
     dict_player_id_data = df_player_id_data.set_index('id').to_dict()['player_name']
     return dict_player_id_data
