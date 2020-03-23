@@ -1,7 +1,7 @@
 variable,value,description
-season,2014,"Any year from 2014 to current year. Note: If you enter 2014, it considers the 2014/15 season"
-league_name,Serie A,"Options: Bundesliga, EPL, Serie A, La Liga, Ligue 1"
-team_name,AC Milan,Must be same as team name on Understat
+season,2020,"Any year from 2014 to current year. Note: If you enter 2014, it considers the 2014/15 season"
+league_name,Bundesliga,"Options: Bundesliga, EPL, Serie A, La Liga, Ligue 1"
+team_name,Bayern Munich,Must be same as team name on Understat
 match_id,310,"Find the match_id on Understat, once you find the match you're interested in"
 player_id,223,"Find the player_id on Understat, once you find the player you're interested in"
 ,,
