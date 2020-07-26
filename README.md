@@ -73,3 +73,7 @@
 
 ### Team data (by league/season)
 ![Team data](images/teams.png)
+
+## Contributing and Collaborating
+- Feel free to make a pull request with details about what you intend to change/add.
+- Feel free to write up an issue if you'd like to communicate any issues or reach out to me.
