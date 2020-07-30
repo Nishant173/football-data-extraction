@@ -1,8 +1,10 @@
 import os
 import joblib
+import warnings
 import time
 import json
 import datetime
+import numpy as np
 import pandas as pd
 
 use_timestamp = True
@@ -72,9 +74,29 @@ def convert_dtypes(dataframe, columns, dtypes):
 
 
 def run_and_timeit(func):
-    """ Takes in function name; runs it; and returns time taken in minutes """
+    """
+    Takes in function-name; then runs it, times it, and prints out the time taken.
+    Parameters:
+        - func (object): Object of the function you want to execute.
+    """
     start = time.time()
+    warnings.filterwarnings(action='ignore')
     func()
     end = time.time()
-    time_taken_in_minutes = round((end - start) / 60, 2)
-    return time_taken_in_minutes
+    time_taken_in_secs = int(round((end - start), 2))
+    if time_taken_in_secs < 60:
+        secs = time_taken_in_secs
+        time_taken = f"{secs}s"
+    elif 60 < time_taken_in_secs < 3600: # 1 - 59.99 mins
+        mins = int(np.floor(time_taken_in_secs / 60))
+        secs = time_taken_in_secs % 60
+        time_taken = f"{mins}m {secs}s"
+    elif 3600 < time_taken_in_secs < 86400: # 1 - 23.99 hrs
+        hrs = int(np.floor(time_taken_in_secs / 3600))
+        mins = int(np.floor((time_taken_in_secs - 3600*hrs) / 60))
+        secs = time_taken_in_secs % 60
+        time_taken = f"{hrs}h {mins}m {secs}s"
+    else:
+        time_taken = "Longer than a day!"
+    print(f"\nDone! Time taken: {time_taken}")
+    return None
