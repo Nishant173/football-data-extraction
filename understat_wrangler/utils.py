@@ -73,6 +73,21 @@ def convert_dtypes(dataframe, columns, dtypes):
     return dataframe_altered
 
 
+def get_timetaken_fstring(num_seconds):
+    """ Returns formatted-string of time elapsed, given the number of seconds (int) elapsed """
+    if num_seconds < 60:
+        secs = num_seconds
+        fstring_timetaken = f"{secs}s"
+    elif 60 < num_seconds < 3600:
+        mins, secs = divmod(num_seconds, 60)
+        fstring_timetaken = f"{mins}m {secs}s"
+    else:
+        hrs, secs_remainder = divmod(num_seconds, 3600)
+        mins, secs = divmod(secs_remainder, 60)
+        fstring_timetaken = f"{hrs}h {mins}m {secs}s"
+    return fstring_timetaken
+
+
 def run_and_timeit(func):
     """
     Takes in function-name; then runs it, times it, and prints out the time taken.
@@ -83,20 +98,7 @@ def run_and_timeit(func):
     warnings.filterwarnings(action='ignore')
     func()
     end = time.time()
-    time_taken_in_secs = int(round((end - start), 2))
-    if time_taken_in_secs < 60:
-        secs = time_taken_in_secs
-        time_taken = f"{secs}s"
-    elif 60 < time_taken_in_secs < 3600: # 1 - 59.99 mins
-        mins = int(np.floor(time_taken_in_secs / 60))
-        secs = time_taken_in_secs % 60
-        time_taken = f"{mins}m {secs}s"
-    elif 3600 < time_taken_in_secs < 86400: # 1 - 23.99 hrs
-        hrs = int(np.floor(time_taken_in_secs / 3600))
-        mins = int(np.floor((time_taken_in_secs - 3600*hrs) / 60))
-        secs = time_taken_in_secs % 60
-        time_taken = f"{hrs}h {mins}m {secs}s"
-    else:
-        time_taken = "Longer than a day!"
-    print(f"\nDone! Time taken: {time_taken}")
+    timetaken_in_secs = int(np.ceil(end - start))
+    timetaken_fstring = get_timetaken_fstring(num_seconds=timetaken_in_secs)
+    print(f"\nDone! Time taken: {timetaken_fstring}")
     return None

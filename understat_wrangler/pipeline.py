@@ -224,6 +224,7 @@ def execute_pipeline():
         - Transformation of raw JSON data into human readable/understandable Excel/CSV files
         - Storage of these Excel/CSV files into a results folder
     """
+    print("Processing...")
     dict_user_input = get_user_input.read_user_input()
 
     season = int(dict_user_input['season'])
