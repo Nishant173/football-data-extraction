@@ -12,7 +12,7 @@ if __name__ == "__main__":
         df_league_results['League'] = league_name
         df_league_results['Season'] = season_string
         df_league_results.rename({'datetime': 'Date'}, axis=1, inplace=True)
-        df_league_results['Date'] = df_league_results['Date'].dt.strftime(date_format="%m/%d/%Y")
+        df_league_results['Date'] = df_league_results['Date'].dt.strftime(date_format="%Y-%m-%d")
         columns = ['HomeTeam', 'AwayTeam', 'HomeGoals', 'AwayGoals', 'Country', 'League', 'Season', 'Date']
         df_league_results = df_league_results.loc[:, columns]
         df_league_results.to_csv(f"{league_name} - {season_string}.csv", index=False)
